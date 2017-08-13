@@ -9,6 +9,7 @@ namespace Xamarin.RangeSlider.Forms.Samples
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new Model();
             RangeSlider.DragStarted += RangeSliderOnDragStarted;
             RangeSlider.DragCompleted += RangeSliderOnDragCompleted;
             RangeSlider.LowerValueChanged += RangeSliderOnLowerValueChanged;
