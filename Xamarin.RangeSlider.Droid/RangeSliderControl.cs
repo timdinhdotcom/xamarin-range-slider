@@ -312,17 +312,19 @@ namespace Xamarin.RangeSlider
                 }
             }
 
+            
+
             if (ThumbImage == null)
             {
-                ThumbImage = BitmapFactory.DecodeResource(Resources, thumbNormal);
+                ThumbImage = BitmapFromResourceId(thumbNormal);
             }
             if (ThumbPressedImage == null)
             {
-                ThumbPressedImage = BitmapFactory.DecodeResource(Resources, thumbPressed);
+                ThumbPressedImage = BitmapFromResourceId(thumbPressed);
             }
             if (ThumbDisabledImage == null)
             {
-                ThumbDisabledImage = BitmapFactory.DecodeResource(Resources, thumbDisabled);
+                ThumbDisabledImage = BitmapFromResourceId(thumbDisabled);
             }
 
             _thumbHalfWidth = 0.5f * ThumbImage.Width;
@@ -343,6 +345,14 @@ namespace Xamarin.RangeSlider
                 _shadowPaint.SetMaskFilter(new BlurMaskFilter(_thumbShadowBlur, BlurMaskFilter.Blur.Normal));
                 _thumbShadowPath = new Path();
                 _thumbShadowPath.AddCircle(0, 0, _thumbHalfHeight, Path.Direction.Cw);
+            }
+        }
+
+        private Bitmap BitmapFromResourceId(int id)
+        {
+            using (var stream = Resources.OpenRawResource(id))
+            {
+                return BitmapFactory.DecodeStream(stream);
             }
         }
 
